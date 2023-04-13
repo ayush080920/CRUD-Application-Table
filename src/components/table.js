@@ -64,9 +64,9 @@ function UserTable() {
                 </tr>
             </thead>
             {
-                data.map((user) => {
+                data.map((user, index) => {
 
-                    return <tbody >
+                    return <tbody key={index}>
                         <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.name}</td>

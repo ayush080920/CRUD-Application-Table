@@ -46,7 +46,7 @@ const NewUser = () => {
 
                 <label className="form-label">Name</label>
                 <input type="text" className="form-control" placeholder="abcd" value={name} onChange={(e) => setName(e.target.value)}></input>
-                <label for="exampleInputEmail1" className="form-label">Email address</label>
+                <label  className="form-label">Email address</label>
                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={email} onChange={(e) => setEmail(e.target.value)}></input>
 
                 <label className="form-label">Gender</label>
