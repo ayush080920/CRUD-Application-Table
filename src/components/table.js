@@ -1,9 +1,9 @@
-
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchUsers } from '../store';
 import { Link } from 'react-router-dom';
-import { deleteUser } from '../store';
+
+import ModalPage from './modal';
 
 
 
@@ -11,6 +11,8 @@ import { deleteUser } from '../store';
 // import { useNavigate } from 'react-router-dom';
 
 function UserTable() {
+    const [id, setId] = useState()
+    const [showPopup, setShowPopUp] = useState(false)
 
 
     const dispatch = useDispatch()
@@ -35,17 +37,13 @@ function UserTable() {
     }
 
 
-    const handleDelete = (user) => {
-        if (window.confirm(`Do You Really Wanat To Delete?${user.name}`))
-            dispatch(deleteUser(user))
 
-    }
 
 
 
     return <div>
 
-
+        {showPopup && <ModalPage id={id} showPopup={showPopup} setShowPopUp={setShowPopUp} />}
 
         <div className="d-flex flex-row-reverse">
             <Link to='/newuser'><button type="button" className="btn btn-primary btn-lg m-3 " >+ ADD USER</button></Link>
@@ -63,6 +61,7 @@ function UserTable() {
 
                 </tr>
             </thead>
+           
             {
                 data.map((user, index) => {
 
@@ -76,7 +75,7 @@ function UserTable() {
                             <td><Link to={`/showuser/${user.id}`}><button type="button" className="btn">Show</button></Link>
                                 <Link to={`/updateuser/${user.id}`}>
                                     <button type="button" className="btn">Edit</button></Link>
-                                <button onClick={() => handleDelete(user)} type="button" className="btn">Delete</button>
+                                <button onClick={() => [setId(user), setShowPopUp(true)]} type="button" className="btn">Delete</button>
                             </td>
                         </tr>
                     </tbody>
