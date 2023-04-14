@@ -1,8 +1,9 @@
-import { editUser } from "../store"
+import { editUser, fetchUsers } from "../store"
 import { showUser } from "../store"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+
 
 
 
@@ -20,22 +21,37 @@ const UpdatedUser = () => {
   const dispatch = useDispatch()
   const Navigate = useNavigate()
 
+  useEffect(() => {
+    dispatch(showUser(id)).then(res => {
+
+      setName(res.payload.name)
+      setEmail(res.payload.email)
+      setGender(res.payload.gender)
+      setStatus(res.payload.status)
+
+    })
+
+
+  }, [dispatch, id])
 
   const handleEdit = (event) => {
     event.preventDefault()
     const userEdit = {
       name, email, gender, status, id
     }
+
+
     dispatch(editUser(userEdit)).unwrap().then(res => {
+      dispatch(fetchUsers(id))
       setName('')
       setEmail('')
       setGender('')
       setStatus('')
-      alert("It's successfull")
+      alert()
       Navigate('/')
 
 
-    }).catch(err => { 'Error Loading data...' })
+    })
 
   }
 
@@ -49,8 +65,8 @@ const UpdatedUser = () => {
 
     })
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+
+  }, [dispatch, id])
 
 
 

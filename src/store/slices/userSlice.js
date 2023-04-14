@@ -3,22 +3,16 @@ import { fetchUsers } from "../thunks/fetchUsers";
 import { addUser } from "../thunks/addUser";
 import { deleteUser } from "../thunks/deleteUser";
 import { editUser } from "../thunks/editUser"
-//import { showUser } from "../thunks/showUser";
+
 const userSlice = createSlice({
     name: 'users',
     initialState: {
         data: [],
         isLoading: false,
         error: null,
-        searchData: []
-    },
-    reducer: {
-        searchUser: (state, action) => {
-            console.log(action.payload)
-            state.searchUser = action.payload
-        },
 
     },
+
     extraReducers(builder) {
         builder.addCase(fetchUsers.pending, (state, action) => {
             state.isLoading = true
@@ -63,11 +57,12 @@ const userSlice = createSlice({
         })
         builder.addCase(editUser.fulfilled, (state, action) => {
             state.isLoading = false
-            state.data = state.data.map(user => {
+             state.data = state.data.map((user) => {
                 if (user.id === action.payload.id) {
-                    return action.payload
+                    return action.payload.id
                 }
                 return user
+
             })
         })
 
@@ -78,20 +73,6 @@ const userSlice = createSlice({
             state.isLoading = false
             state.error = action.error
         })
-        // builder.addCase(showUser.pending, (state, action) => {
-        //     state.isLoading = true
-
-
-        // })
-        // builder.addCase(showUser.fulfilled, (state, action) => {
-        //     state.isLoading = false
-        //     state.data = action.payload
-        // })
-
-        // builder.addCase(showUser.rejected, (state, action) => {
-        //     state.isLoading = false
-        //     state.error = action.error
-        // })
 
     }
 })

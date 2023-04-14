@@ -2,13 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchUsers } from '../store';
 import { Link } from 'react-router-dom';
-
 import ModalPage from './modal';
 
 
 
 
-// import { useNavigate } from 'react-router-dom';
+
 
 function UserTable() {
     const [id, setId] = useState()
@@ -37,7 +36,7 @@ function UserTable() {
     }
 
 
-
+   
 
 
 
@@ -61,7 +60,7 @@ function UserTable() {
 
                 </tr>
             </thead>
-           
+
             {
                 data.map((user, index) => {
 
@@ -74,7 +73,7 @@ function UserTable() {
                             <td>{user.status}</td>
                             <td><Link to={`/showuser/${user.id}`}><button type="button" className="btn">Show</button></Link>
                                 <Link to={`/updateuser/${user.id}`}>
-                                    <button type="button" className="btn">Edit</button></Link>
+                                    <button type="button"  className="btn">Edit</button></Link>
                                 <button onClick={() => [setId(user), setShowPopUp(true)]} type="button" className="btn">Delete</button>
                             </td>
                         </tr>

@@ -27,7 +27,7 @@ const NewUser = () => {
             setGender('')
             setStatus('')
             Navigate('/')
-            alert('Successful')
+            
 
         })
 
