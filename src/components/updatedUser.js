@@ -42,7 +42,7 @@ const UpdatedUser = () => {
 
 
     dispatch(editUser(userEdit)).unwrap().then(res => {
-      dispatch(fetchUsers(id))
+
       setName('')
       setEmail('')
       setGender('')
@@ -55,18 +55,7 @@ const UpdatedUser = () => {
 
   }
 
-  useEffect(() => {
-    dispatch(showUser(id)).then(res => {
 
-      setName(res.payload.name)
-      setEmail(res.payload.email)
-      setGender(res.payload.gender)
-      setStatus(res.payload.status)
-
-    })
-
-
-  }, [dispatch, id])
 
 
 

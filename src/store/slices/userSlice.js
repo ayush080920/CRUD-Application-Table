@@ -57,13 +57,13 @@ const userSlice = createSlice({
         })
         builder.addCase(editUser.fulfilled, (state, action) => {
             state.isLoading = false
-             state.data = state.data.map((user) => {
-                if (user.id === action.payload.id) {
-                    return action.payload.id
-                }
-                return user
+            state.data = state.data.filter((user) => {
+                return user.id === action.payload.id
 
-            })
+            }
+
+
+            )
         })
 
 
@@ -79,4 +79,3 @@ const userSlice = createSlice({
 
 
 export const usersReducer = userSlice.reducer
-export const { searchUser } = userSlice.actions
