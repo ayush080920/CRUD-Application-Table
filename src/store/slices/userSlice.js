@@ -3,15 +3,22 @@ import { fetchUsers } from "../thunks/fetchUsers";
 import { addUser } from "../thunks/addUser";
 import { deleteUser } from "../thunks/deleteUser";
 import { editUser } from "../thunks/editUser"
-
 const userSlice = createSlice({
     name: 'users',
     initialState: {
         data: [],
         isLoading: false,
         error: null,
-
+        searchItem: '',
     },
+    reducers: {
+        searchUser: (state, action) => {
+            state.searchItem = action.payload
+
+        }
+    },
+
+
 
     extraReducers(builder) {
         builder.addCase(fetchUsers.pending, (state, action) => {
@@ -57,18 +64,12 @@ const userSlice = createSlice({
         })
         builder.addCase(editUser.fulfilled, (state, action) => {
             state.isLoading = false
-            state.data = state.data.filter((user) => {
+            state.data = state.data.map((user) => {
                 return user.id === action.payload.id
 
             }
-
-
             )
         })
-
-
-
-
         builder.addCase(editUser.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.error
@@ -79,3 +80,4 @@ const userSlice = createSlice({
 
 
 export const usersReducer = userSlice.reducer
+export const { searchUser } = userSlice.actions
