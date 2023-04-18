@@ -78,15 +78,15 @@ function UserTable() {
                 </tr>
             </thead>
 
-            {data &&
+            {
                 data.filter((user) => {
-                    if (data.length === 0) {
-                        return user
-                    }
-                    else {
-                        return user.name.toLowerCase().includes(searchItem.toLowerCase())
-                    }
-                })
+                        if (data.length === 0) {
+                            return user
+                        }
+                        else {
+                            return user.name.toLowerCase().includes(searchItem.toLowerCase())
+                        }
+                    })
                     .filter((user) => {
                         if (radioData === 'male') {
                             return user.gender === radioData

@@ -64,7 +64,7 @@ const userSlice = createSlice({
         })
         builder.addCase(editUser.fulfilled, (state, action) => {
             state.isLoading = false
-            state.data = state.data.map((user) => {
+            state.data = state.data.filter((user) => {
                 return user.id === action.payload.id
 
             }

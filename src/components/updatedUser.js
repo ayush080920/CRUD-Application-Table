@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-const UpdatedUser = () => {
+  const UpdatedUser = () => {
   const { id } = useParams()
- const [name, setName] = useState('')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [gender, setGender] = useState('')
   const [status, setStatus] = useState('')
@@ -32,20 +32,17 @@ const UpdatedUser = () => {
     const userEdit = {
       name, email, gender, status, id
     }
- dispatch(editUser(userEdit)).unwrap().then(res => {
+    dispatch(editUser(userEdit)).unwrap().then(res => {
       setName('')
       setEmail('')
       setGender('')
       setStatus('')
-      alert()
       Navigate('/')
-
-
     })
 
   }
 
-    return (
+  return (
     <div className="mb-3">
       <form onSubmit={handleEdit}>
 
